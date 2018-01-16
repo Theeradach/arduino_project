@@ -1,0 +1,34 @@
+git basic usage : 
+
+enter to folder and right click -> git bush here
+
+git commands
+1. git init 
+2. git remote add origin <server>.git  -> connect git to github
+3. git add <filename> or (add *)
+4. git commit -m "<comment about file>"
+5. git push -f origin master  --> push file to github
+
+
+
+20 Tips for android studio shortcut
+https://devahoy.com/posts/20-tips-keyboard-shortcut-on-android-studio/#tip1
+
+Code Complete --> Ctrl + spacebar
+
+Generate " (Button) " -->  Ctrl + Shift + space
+
+View document --> Ctrl + Q 
+
+Next/Previous method --> Alt + up and Alt + down 
+
+Recend Change --> Alt + Shift + C.
+
+
+firebase Secret Key 
+QRE51gmEqjC5Z62lEixk5FTjjDPIoPMqr142E0o7
+
+https://nodemcu-ce671.firebaseio.com/
+
+Live template "itar" (for loop) --> Ctrl + J 
+
