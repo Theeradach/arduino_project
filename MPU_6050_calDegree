@@ -1,0 +1,45 @@
+// GY-521 MPU6050 map the Raw Value example Develope by Commandrone
+// www.commandronestore.com
+#include "Wire.h"
+#include "I2Cdev.h" 
+#include "MPU6050.h"
+
+MPU6050 mpu; //ประกาศตัวแปร mpu เป็นตัวแปรจาก Libraly
+int16_t ax, ay, az;
+int16_t gx, gy, gz;
+void setup() 
+{
+Wire.begin();
+Serial.begin(38400);
+
+Serial.println("Initialize MPU");
+mpu.initialize();
+Serial.println(mpu.testConnection() ? "Connected" : "Connection failed");
+} 
+
+void loop() //รับค่าและแสดงผลแกนต่างๆไปเรื่อยๆ
+{
+mpu.getMotion6(&ax, &ay, &az, &gx, &gy, &gz);
+
+// แปลงค่า จาก raw value มาเป็น องศา 
+double xAngle = atan( ax / (sqrt(square(ay) + square(az))));
+double yAngle = atan( ay / (sqrt(square(ax) + square(az))));
+double zAngle = atan( sqrt(square(ax) + square(ay)) / az);
+
+xAngle *= 180.00;   yAngle *= 180.00;   zAngle *= 180.00;
+xAngle /= 3.141592; yAngle /= 3.141592; zAngle /= 3.141592;
+
+// ลดค่า rang ลงมาให้เหลือ 0 - 10 ให้อ่านง่ายๆ
+gx = gz / 3200; gy = gy / 3200; gz = gz / 3200;
+
+Serial.print("Axyz \t"); 
+Serial.print(xAngle); Serial.print("\t"); 
+Serial.print(yAngle); Serial.print("\t"); 
+Serial.print(zAngle); Serial.print("\t"); 
+Serial.print("Gxyz \t"); 
+Serial.print(gx); Serial.print("\t"); 
+Serial.print(gy); Serial.print("\t"); 
+Serial.println(gz); 
+
+delay(50); 
+}
